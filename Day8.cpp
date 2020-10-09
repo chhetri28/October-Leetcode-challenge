@@ -30,3 +30,57 @@ class Solution {
       return -1;
   }
 };
+//Problem 2
+// Two Sum III - Data structure design
+/*
+Design and implement a TwoSum class. It should support the following operations: add and find.
+
+add - Add the number to an internal data structure.
+find - Find if there exists any pair of numbers which sum is equal to the value.
+Example
+
+Example 1:
+
+add(1); add(3); add(5);
+find(4) // return true
+find(7) // return false
+
+
+*/
+class TwoSum {
+public:
+    /**
+     * @param number: An integer
+     * @return: nothing
+     */
+    vector<int>res;
+    bool issorted=true;
+    void add(int number) {
+        // write your code here
+        res.push_back(number);
+        issorted=false;
+    }
+
+    /**
+     * @param value: An integer
+     * @return: Find if there exists any pair of numbers which sum is equal to the value.
+     */
+    bool find(int value) {
+        // write your code here
+       if(!issorted){
+           sort(res.begin(),res.end());
+       }
+       int s=0,e=res.size()-1;
+       while(s<e){
+           int sum=res[s]+res[e];
+           if(sum==value){
+               return true;
+           }else if(sum<value){
+               s++;
+           }else{
+               e--;
+           }
+       }
+       return false;
+    }
+};
